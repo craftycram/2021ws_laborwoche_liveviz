@@ -1,0 +1,186 @@
+[
+    {
+        "id": "22733679.c98022",
+        "type": "tab",
+        "label": "Client",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cd9ec9ae.400ef8",
+        "type": "inject",
+        "z": "22733679.c98022",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "time",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "user",
+                "v": "marc",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.25",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 140,
+        "wires": [
+            [
+                "e03b4675.12b3e",
+                "9ce0ed0c.3d9ef"
+            ]
+        ]
+    },
+    {
+        "id": "e03b4675.12b3e",
+        "type": "websocket out",
+        "z": "22733679.c98022",
+        "name": "",
+        "server": "",
+        "client": "c327b46c.dc8f88",
+        "x": 830,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "273cc789.fc86c8",
+        "type": "mqtt out",
+        "z": "22733679.c98022",
+        "d": true,
+        "name": "",
+        "topic": "/laborwoche/marc",
+        "qos": "",
+        "retain": "",
+        "broker": "c821fdb7.f0133",
+        "x": 770,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9ce0ed0c.3d9ef",
+        "type": "function",
+        "z": "22733679.c98022",
+        "name": "",
+        "func": "\nreturn {\n    payload: msg\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 480,
+        "y": 220,
+        "wires": [
+            [
+                "273cc789.fc86c8",
+                "523b7add.41409c"
+            ]
+        ]
+    },
+    {
+        "id": "523b7add.41409c",
+        "type": "debug",
+        "z": "22733679.c98022",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3f12dd54.980e62",
+        "type": "serial in",
+        "z": "22733679.c98022",
+        "name": "",
+        "serial": "bd7069e.d347118",
+        "x": 210,
+        "y": 320,
+        "wires": [
+            [
+                "474e3b68.f9c944"
+            ]
+        ]
+    },
+    {
+        "id": "474e3b68.f9c944",
+        "type": "function",
+        "z": "22733679.c98022",
+        "name": "",
+        "func": "const rgb = msg.payload.split(',');\nconst payload = {};\npayload.r = parseFloat(rgb[0]);\npayload.g = parseFloat(rgb[1]);\npayload.b = parseFloat(rgb[2]);\npayload.time = Date.now();\nmsg.payload = payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 460,
+        "y": 320,
+        "wires": [
+            [
+                "273cc789.fc86c8",
+                "523b7add.41409c",
+                "e03b4675.12b3e"
+            ]
+        ]
+    },
+    {
+        "id": "c327b46c.dc8f88",
+        "type": "websocket-client",
+        "path": "ws://127.0.0.1:1880/ws/recieve",
+        "tls": "",
+        "wholemsg": "false"
+    },
+    {
+        "id": "c821fdb7.f0133",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.shiftr.io",
+        "port": "1883",
+        "clientid": "node-red-marc",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    },
+    {
+        "id": "bd7069e.d347118",
+        "type": "serial-port",
+        "serialport": "/dev/cu.usbmodem14101",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    }
+]

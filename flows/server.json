@@ -1,0 +1,117 @@
+[
+    {
+        "id": "c039dddc.4b87c",
+        "type": "tab",
+        "label": "Websocket Server",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8e0b4de7.b6b578",
+        "type": "websocket in",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "server": "16ac7f04.bf4dd1",
+        "client": "",
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "fb996e7d.760608"
+            ]
+        ]
+    },
+    {
+        "id": "9fdf91a0.c9b4a8",
+        "type": "websocket out",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "server": "16ac7f04.bf4dd1",
+        "client": "",
+        "x": 740,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fb996e7d.760608",
+        "type": "function",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "func": "const parsed = JSON.parse(msg.payload)\nreturn { payload: parsed };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "9fdf91a0.c9b4a8",
+                "b779a1bc.123bf"
+            ]
+        ]
+    },
+    {
+        "id": "b779a1bc.123bf",
+        "type": "debug",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "93d86ead.1ad05",
+        "type": "mqtt in",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "topic": "/laborwoche/marc",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c821fdb7.f0133",
+        "x": 360,
+        "y": 180,
+        "wires": [
+            [
+                "fb996e7d.760608"
+            ]
+        ]
+    },
+    {
+        "id": "16ac7f04.bf4dd1",
+        "type": "websocket-listener",
+        "path": "/ws/recieve",
+        "wholemsg": "false"
+    },
+    {
+        "id": "c821fdb7.f0133",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.shiftr.io",
+        "port": "1883",
+        "clientid": "node-red-marc",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    }
+]
