@@ -29,11 +29,11 @@ function draw() {
   background(255);
   noStroke();
   fill(255, 0, 0);
-  rect(0, 50, bgColor.r * 2, 20);
+  rect(0, 0, bgColor.r * 4, lineHeight);
   fill(0, 255, 0);
-  rect(0, 100, bgColor.g * 2, 20);
+  rect(0, lineHeight, bgColor.g * 4, lineHeight);
   fill(0, 0, 255);
-  rect(0, 150, bgColor.b * 2, 20);
+  rect(0, lineHeight*2, bgColor.b * 4, lineHeight);
 }
 
 function mousePressed() {
