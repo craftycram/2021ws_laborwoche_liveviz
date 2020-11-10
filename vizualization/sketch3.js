@@ -26,7 +26,7 @@ function setup() {
 
 function draw() {
   const lineHeight = displayHeight / 3;
-  background(255);
+  background(0);
   noStroke();
   fill(255, 0, 0);
   rect(0, 0, bgColor.r * 4, lineHeight);
