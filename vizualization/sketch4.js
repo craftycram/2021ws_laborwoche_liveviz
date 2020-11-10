@@ -30,7 +30,7 @@ function draw() {
     textSize(200);
     textAlign(CENTER);
     fill(inverseColor(bgColor.r, bgColor.g, bgColor.b));
-    text(dir, (width / 2), height / 2)
+    text(dir, (width / 2), height / 2 + 60)
 }
 
 function mousePressed() {
