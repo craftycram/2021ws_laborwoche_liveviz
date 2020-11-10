@@ -29,8 +29,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 250,
-        "y": 140,
+        "x": 200,
+        "y": 240,
         "wires": [
             [
                 "e03b4675.12b3e",
@@ -45,22 +45,21 @@
         "name": "",
         "server": "",
         "client": "c327b46c.dc8f88",
-        "x": 830,
-        "y": 180,
+        "x": 810,
+        "y": 480,
         "wires": []
     },
     {
         "id": "273cc789.fc86c8",
         "type": "mqtt out",
         "z": "22733679.c98022",
-        "d": true,
         "name": "",
         "topic": "/laborwoche/marc",
         "qos": "",
         "retain": "",
         "broker": "c821fdb7.f0133",
-        "x": 770,
-        "y": 220,
+        "x": 750,
+        "y": 420,
         "wires": []
     },
     {
@@ -73,8 +72,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 480,
-        "y": 220,
+        "x": 400,
+        "y": 240,
         "wires": [
             [
                 "273cc789.fc86c8",
@@ -96,17 +95,18 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 300,
+        "y": 540,
         "wires": []
     },
     {
         "id": "3f12dd54.980e62",
         "type": "serial in",
         "z": "22733679.c98022",
+        "d": true,
         "name": "",
         "serial": "bd7069e.d347118",
-        "x": 210,
-        "y": 320,
+        "x": 170,
+        "y": 440,
         "wires": [
             [
                 "474e3b68.f9c944"
@@ -117,19 +117,87 @@
         "id": "474e3b68.f9c944",
         "type": "function",
         "z": "22733679.c98022",
-        "name": "",
+        "name": "Color",
         "func": "const rgb = msg.payload.split(',');\nconst payload = {};\npayload.r = parseFloat(rgb[0]);\npayload.g = parseFloat(rgb[1]);\npayload.b = parseFloat(rgb[2]);\npayload.time = Date.now();\nmsg.payload = payload\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 460,
-        "y": 320,
+        "x": 430,
+        "y": 440,
         "wires": [
             [
                 "273cc789.fc86c8",
                 "523b7add.41409c",
                 "e03b4675.12b3e"
+            ]
+        ]
+    },
+    {
+        "id": "5888bc99.a520c4",
+        "type": "serial in",
+        "z": "22733679.c98022",
+        "d": true,
+        "name": "",
+        "serial": "bd7069e.d347118",
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "b3b19283.1be368"
+            ]
+        ]
+    },
+    {
+        "id": "b3b19283.1be368",
+        "type": "function",
+        "z": "22733679.c98022",
+        "name": "Gesture",
+        "func": "const dir = msg.payload\nconst payload = {};\npayload.dir = dir;\npayload.time = Date.now();\nmsg.payload = payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 480,
+        "wires": [
+            [
+                "e03b4675.12b3e",
+                "523b7add.41409c"
+            ]
+        ]
+    },
+    {
+        "id": "479ac58f.7d4efc",
+        "type": "serial in",
+        "z": "22733679.c98022",
+        "name": "",
+        "serial": "bd7069e.d347118",
+        "x": 170,
+        "y": 520,
+        "wires": [
+            [
+                "ece3e196.c771a"
+            ]
+        ]
+    },
+    {
+        "id": "ece3e196.c771a",
+        "type": "function",
+        "z": "22733679.c98022",
+        "name": "Color&Gesture",
+        "func": "const data = msg.payload.split(',');\nconst payload = {};\npayload.r = parseFloat(data[0]);\npayload.g = parseFloat(data[1]);\npayload.b = parseFloat(data[2]);\npayload.gesture = data[3];\npayload.time = Date.now();\nmsg.payload = payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 520,
+        "wires": [
+            [
+                "e03b4675.12b3e",
+                "523b7add.41409c",
+                "273cc789.fc86c8"
             ]
         ]
     },
@@ -144,7 +212,7 @@
         "id": "c821fdb7.f0133",
         "type": "mqtt-broker",
         "name": "",
-        "broker": "broker.shiftr.io",
+        "broker": "mqtt.hfg.design",
         "port": "1883",
         "clientid": "node-red-marc",
         "usetls": false,
@@ -167,7 +235,7 @@
     {
         "id": "bd7069e.d347118",
         "type": "serial-port",
-        "serialport": "/dev/cu.usbmodem14101",
+        "serialport": "/dev/tty.usbmodem14101",
         "serialbaud": "9600",
         "databits": "8",
         "parity": "none",
