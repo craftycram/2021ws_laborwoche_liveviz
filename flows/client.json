@@ -29,8 +29,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 200,
-        "y": 240,
+        "x": 220,
+        "y": 380,
         "wires": [
             [
                 "e03b4675.12b3e",
@@ -72,8 +72,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 400,
-        "y": 240,
+        "x": 420,
+        "y": 380,
         "wires": [
             [
                 "273cc789.fc86c8",

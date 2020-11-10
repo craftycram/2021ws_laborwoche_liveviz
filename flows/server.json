@@ -13,8 +13,8 @@
         "name": "",
         "server": "16ac7f04.bf4dd1",
         "client": "",
-        "x": 310,
-        "y": 240,
+        "x": 320,
+        "y": 180,
         "wires": [
             [
                 "fb996e7d.760608"
@@ -56,7 +56,7 @@
         "type": "debug",
         "z": "c039dddc.4b87c",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -64,23 +64,59 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 320,
+        "y": 200,
         "wires": []
     },
     {
         "id": "93d86ead.1ad05",
         "type": "mqtt in",
         "z": "c039dddc.4b87c",
+        "d": true,
         "name": "",
         "topic": "/laborwoche/marc",
         "qos": "2",
         "datatype": "auto",
         "broker": "c821fdb7.f0133",
-        "x": 360,
-        "y": 180,
+        "x": 330,
+        "y": 240,
         "wires": [
             [
                 "fb996e7d.760608"
+            ]
+        ]
+    },
+    {
+        "id": "4d5f57dd.415dc8",
+        "type": "mqtt in",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "topic": "/laborwoche/steve",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 330,
+        "y": 300,
+        "wires": [
+            [
+                "847046d.d792a38"
+            ]
+        ]
+    },
+    {
+        "id": "847046d.d792a38",
+        "type": "function",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "func": "return { payload: {\n    r: msg.payload,\n    g:msg.payload,\n    b:msg.payload\n}};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "9fdf91a0.c9b4a8"
             ]
         ]
     },
@@ -112,6 +148,27 @@
         "willTopic": "",
         "willQos": "0",
         "willRetain": "false",
+        "willPayload": ""
+    },
+    {
+        "id": "baa0a472.80fa58",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.hfg.design",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
         "willPayload": ""
     }
 ]
