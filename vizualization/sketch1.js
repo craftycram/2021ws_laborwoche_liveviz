@@ -21,9 +21,14 @@ ws.onmessage = (msg) => {
 
 
 function setup() {
-    createCanvas(400, 400);
-  }
-  
-  function draw() {
+    createCanvas(displayWidth, displayHeight);
+}
+
+function draw() {
     background(color(bgColor.r, bgColor.g, bgColor.b));
+  }
+
+  function mousePressed() {
+      let fs = fullscreen();
+      fullscreen(!fs);
   }
