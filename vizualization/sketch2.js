@@ -8,15 +8,22 @@ ws.onopen = (event) => {
 
 ws.onmessage = (msg) => {
     const data = JSON.parse(msg.data);
-    dir = data.dir
+    dir = data.gesture
 }
 
 
 function setup() {
-    createCanvas(400, 400);
-  }
-  
-  function draw() {
-      clear();
-    text(dir, width / 2, height / 2)
-  }
+    createCanvas(displayWidth, displayHeight);
+}
+
+function draw() {
+    clear();
+    textSize(200);
+    textAlign(CENTER);
+    text(dir, (width / 2), height / 2)
+}
+
+function mousePressed() {
+    let fs = fullscreen();
+    fullscreen(!fs);
+}
