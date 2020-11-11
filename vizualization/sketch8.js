@@ -2,7 +2,7 @@ let ws = new WebSocket('ws://127.0.0.1:1880/ws/recieve');
 
 let data = {};
 let x, y;
-const r = 100;
+const r = 30;
 const s = r;
 
 ws.onopen = (event) => {
@@ -28,7 +28,7 @@ function draw() {
     
     x+=s;
     if (x >= displayWidth -r) { y+=s; x = r; }
-    if (y >= displayHeight) y=r;
+    if (y >= displayHeight-r) y=r;
 
 }
 
