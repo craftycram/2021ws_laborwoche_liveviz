@@ -2,7 +2,8 @@ let ws = new WebSocket('ws://127.0.0.1:1880/ws/recieve');
 
 let data = {};
 let x, y;
-const r = 20;
+const r = 10;
+const s = 1;
 
 ws.onopen = (event) => {
     console.log(event);
@@ -27,16 +28,24 @@ function draw() {
     
     switch (data.gesture) {
         case 'LEFT':
-            if (x > 0) x--;
+            // if (x > 0) x--;
+            x > 0 - r ? x-=s : x = displayWidth - r;
+            circle(x+displayWidth, y, r);
             break;
         case 'RIGHT':
-            if (x < displayWidth) x++;
+            // if (x < displayWidth) x++;
+            x < displayWidth + r ? x+=s : x = 0 + r;
+            circle(x-displayWidth, y, r);
             break;
         case 'UP':
-            if (y > 0) y--
+            // if (y > 0) y--;
+            y > 0 - r ? y-=s : y = displayHeight;
+            circle(x, y+displayHeight, r);
             break;
         case 'DOWN':
-            if (y < displayHeight) y++;
+            // if (y < displayHeight) y++;
+            y < displayHeight + r ? y+=s : y = 0 - r;
+            circle(x, y-displayHeight, r);
             break;
         default:
             break;
