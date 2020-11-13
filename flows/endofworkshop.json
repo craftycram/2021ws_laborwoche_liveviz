@@ -1,0 +1,1168 @@
+[
+    {
+        "id": "56645818.4ba65",
+        "type": "tab",
+        "label": "ClientServer",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c039dddc.4b87c",
+        "type": "tab",
+        "label": "Websocket Server",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "22733679.c98022",
+        "type": "tab",
+        "label": "Client",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "5cb00103.00db9",
+        "type": "tab",
+        "label": "Listener",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "16ac7f04.bf4dd1",
+        "type": "websocket-listener",
+        "path": "/ws/recieve",
+        "wholemsg": "false"
+    },
+    {
+        "id": "c327b46c.dc8f88",
+        "type": "websocket-client",
+        "path": "ws://127.0.0.1:1880/ws/recieve",
+        "tls": "",
+        "wholemsg": "false"
+    },
+    {
+        "id": "c821fdb7.f0133",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.hfg.design",
+        "port": "1883",
+        "clientid": "node-red-marc",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    },
+    {
+        "id": "bd7069e.d347118",
+        "type": "serial-port",
+        "serialport": "/dev/tty.usbmodem14101",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "35739ac5.e680a6",
+        "type": "websocket-listener",
+        "path": "/ws/receive",
+        "wholemsg": "false"
+    },
+    {
+        "id": "baa0a472.80fa58",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.hfg.design",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "f4820c9e.060a28",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "https://mqtt.ava.hfg.design",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    },
+    {
+        "id": "8e0b4de7.b6b578",
+        "type": "websocket in",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "server": "16ac7f04.bf4dd1",
+        "client": "",
+        "x": 320,
+        "y": 180,
+        "wires": [
+            [
+                "fb996e7d.760608"
+            ]
+        ]
+    },
+    {
+        "id": "9fdf91a0.c9b4a8",
+        "type": "websocket out",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "server": "16ac7f04.bf4dd1",
+        "client": "",
+        "x": 740,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fb996e7d.760608",
+        "type": "function",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "func": "const parsed = JSON.parse(msg.payload)\nreturn { payload: parsed };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "9fdf91a0.c9b4a8",
+                "b779a1bc.123bf"
+            ]
+        ]
+    },
+    {
+        "id": "cd9ec9ae.400ef8",
+        "type": "inject",
+        "z": "22733679.c98022",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "time",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "user",
+                "v": "marc",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.25",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 220,
+        "y": 380,
+        "wires": [
+            [
+                "e03b4675.12b3e",
+                "9ce0ed0c.3d9ef"
+            ]
+        ]
+    },
+    {
+        "id": "e03b4675.12b3e",
+        "type": "websocket out",
+        "z": "22733679.c98022",
+        "name": "",
+        "server": "",
+        "client": "c327b46c.dc8f88",
+        "x": 810,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "b779a1bc.123bf",
+        "type": "debug",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "273cc789.fc86c8",
+        "type": "mqtt out",
+        "z": "22733679.c98022",
+        "name": "",
+        "topic": "/laborwoche/marc",
+        "qos": "",
+        "retain": "",
+        "broker": "c821fdb7.f0133",
+        "x": 750,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "93d86ead.1ad05",
+        "type": "mqtt in",
+        "z": "c039dddc.4b87c",
+        "d": true,
+        "name": "",
+        "topic": "/laborwoche/marc",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c821fdb7.f0133",
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [
+                "fb996e7d.760608"
+            ]
+        ]
+    },
+    {
+        "id": "9ce0ed0c.3d9ef",
+        "type": "function",
+        "z": "22733679.c98022",
+        "name": "",
+        "func": "\nreturn {\n    payload: msg\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 380,
+        "wires": [
+            [
+                "273cc789.fc86c8",
+                "523b7add.41409c"
+            ]
+        ]
+    },
+    {
+        "id": "523b7add.41409c",
+        "type": "debug",
+        "z": "22733679.c98022",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "3f12dd54.980e62",
+        "type": "serial in",
+        "z": "22733679.c98022",
+        "d": true,
+        "name": "",
+        "serial": "bd7069e.d347118",
+        "x": 170,
+        "y": 440,
+        "wires": [
+            [
+                "474e3b68.f9c944"
+            ]
+        ]
+    },
+    {
+        "id": "474e3b68.f9c944",
+        "type": "function",
+        "z": "22733679.c98022",
+        "name": "Color",
+        "func": "const rgb = msg.payload.split(',');\nconst payload = {};\npayload.r = parseFloat(rgb[0]);\npayload.g = parseFloat(rgb[1]);\npayload.b = parseFloat(rgb[2]);\npayload.time = Date.now();\nmsg.payload = payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 440,
+        "wires": [
+            [
+                "273cc789.fc86c8",
+                "523b7add.41409c",
+                "e03b4675.12b3e"
+            ]
+        ]
+    },
+    {
+        "id": "5888bc99.a520c4",
+        "type": "serial in",
+        "z": "22733679.c98022",
+        "d": true,
+        "name": "",
+        "serial": "bd7069e.d347118",
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "b3b19283.1be368"
+            ]
+        ]
+    },
+    {
+        "id": "b3b19283.1be368",
+        "type": "function",
+        "z": "22733679.c98022",
+        "name": "Gesture",
+        "func": "const dir = msg.payload\nconst payload = {};\npayload.dir = dir;\npayload.time = Date.now();\nmsg.payload = payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 480,
+        "wires": [
+            [
+                "e03b4675.12b3e",
+                "523b7add.41409c"
+            ]
+        ]
+    },
+    {
+        "id": "479ac58f.7d4efc",
+        "type": "serial in",
+        "z": "22733679.c98022",
+        "name": "",
+        "serial": "bd7069e.d347118",
+        "x": 170,
+        "y": 520,
+        "wires": [
+            [
+                "ece3e196.c771a"
+            ]
+        ]
+    },
+    {
+        "id": "ece3e196.c771a",
+        "type": "function",
+        "z": "22733679.c98022",
+        "name": "Color&Gesture",
+        "func": "const data = msg.payload.split(',');\nconst payload = {};\npayload.r = parseFloat(data[0]);\npayload.g = parseFloat(data[1]);\npayload.b = parseFloat(data[2]);\npayload.gesture = data[3];\npayload.time = Date.now();\nmsg.payload = payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 520,
+        "wires": [
+            [
+                "e03b4675.12b3e",
+                "523b7add.41409c",
+                "273cc789.fc86c8"
+            ]
+        ]
+    },
+    {
+        "id": "5c3795a.c0a94ec",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/hartmut",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 260,
+        "y": 60,
+        "wires": [
+            [
+                "79d7fd10.27efd4"
+            ]
+        ]
+    },
+    {
+        "id": "66f36ca.c7c3394",
+        "type": "debug",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "4f56b377.d29eac",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/noah",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "4c71815f.3318"
+            ]
+        ]
+    },
+    {
+        "id": "d0b3d85.20ca9a8",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/marc",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "5ad3937e.741994"
+            ]
+        ]
+    },
+    {
+        "id": "cc4c2590.9d38a",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/marius",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "72f1e510.38fd44"
+            ]
+        ]
+    },
+    {
+        "id": "7dfb8a55.b3446c",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 780,
+        "y": 380,
+        "wires": [
+            [
+                "66f36ca.c7c3394"
+            ]
+        ]
+    },
+    {
+        "id": "c8d0ca2d.112c",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/vika",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "5d399597.49d144"
+            ]
+        ]
+    },
+    {
+        "id": "79d7fd10.27efd4",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "let name = \"hartmut\";\nif (Math.random() < 0.5) name = \"harald\";\nif (Math.random() < 0.5) name = \"herbert\";\n\n\nmsg.payload = {user:name, origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 60,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "4c71815f.3318",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'noah', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "5ad3937e.741994",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'marc', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "72f1e510.38fd44",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'marius', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 240,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "5d399597.49d144",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'vika', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 300,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "941d40d3.c5a47",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/lisa",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 240,
+        "y": 360,
+        "wires": [
+            [
+                "24b92c66.d717c4"
+            ]
+        ]
+    },
+    {
+        "id": "24b92c66.d717c4",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'lisa', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "2956e42d.3af1ac",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/bianca",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 250,
+        "y": 420,
+        "wires": [
+            [
+                "c81e6858.f11c68"
+            ]
+        ]
+    },
+    {
+        "id": "c81e6858.f11c68",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'bianca', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 420,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "1f4bccb1.9c88eb",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/luca",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 240,
+        "y": 480,
+        "wires": [
+            [
+                "2b5e6434.8eaaa4"
+            ]
+        ]
+    },
+    {
+        "id": "2b5e6434.8eaaa4",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'luca', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "e324461c.dba2c8",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/robin",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 250,
+        "y": 540,
+        "wires": [
+            [
+                "6c049f57.f8352"
+            ]
+        ]
+    },
+    {
+        "id": "6c049f57.f8352",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'robin', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 540,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "be28d78b.d44258",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/johannes",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 260,
+        "y": 600,
+        "wires": [
+            [
+                "e77ccd78.f716a"
+            ]
+        ]
+    },
+    {
+        "id": "e77ccd78.f716a",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'johannes', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 600,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "6dccaa0d.2f49fc",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/tobi",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 240,
+        "y": 660,
+        "wires": [
+            [
+                "c1bace9e.b9a2a8"
+            ]
+        ]
+    },
+    {
+        "id": "c1bace9e.b9a2a8",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'tobi', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 660,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "4d431d77.df5134",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/julian",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 250,
+        "y": 720,
+        "wires": [
+            [
+                "d6888e78.03ffa"
+            ]
+        ]
+    },
+    {
+        "id": "d6888e78.03ffa",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'julian', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 720,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "c6e0f448.f1bae8",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/katharina",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 260,
+        "y": 780,
+        "wires": [
+            [
+                "c421d649.88d028"
+            ]
+        ]
+    },
+    {
+        "id": "c421d649.88d028",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'katharina', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 780,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "b3c4bf5a.a50e08",
+        "type": "mqtt in",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "topic": "/laborwoche/steve",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 250,
+        "y": 840,
+        "wires": [
+            [
+                "b6a809f.11fdc78"
+            ]
+        ]
+    },
+    {
+        "id": "b6a809f.11fdc78",
+        "type": "function",
+        "z": "5cb00103.00db9",
+        "name": "",
+        "func": "msg.payload = {user:'steve', origPayload:msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 840,
+        "wires": [
+            [
+                "7dfb8a55.b3446c"
+            ]
+        ]
+    },
+    {
+        "id": "4d5f57dd.415dc8",
+        "type": "mqtt in",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "topic": "/laborwoche/steve",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 330,
+        "y": 300,
+        "wires": [
+            [
+                "847046d.d792a38"
+            ]
+        ]
+    },
+    {
+        "id": "847046d.d792a38",
+        "type": "function",
+        "z": "c039dddc.4b87c",
+        "name": "",
+        "func": "return { payload: {\n    r: msg.payload,\n    g:msg.payload,\n    b:msg.payload\n}};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "9fdf91a0.c9b4a8"
+            ]
+        ]
+    },
+    {
+        "id": "94ef89f0.b7ee5",
+        "type": "websocket out",
+        "z": "56645818.4ba65",
+        "name": "",
+        "server": "16ac7f04.bf4dd1",
+        "client": "",
+        "x": 920,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "912621a1.5562e",
+        "type": "mqtt out",
+        "z": "56645818.4ba65",
+        "d": true,
+        "name": "",
+        "topic": "laborwoche/marc",
+        "qos": "",
+        "retain": "",
+        "broker": "c821fdb7.f0133",
+        "x": 930,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "5ca1ff43.a7e8a8",
+        "type": "debug",
+        "z": "56645818.4ba65",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 910,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d8f86fba.1cd59",
+        "type": "serial in",
+        "z": "56645818.4ba65",
+        "name": "",
+        "serial": "bd7069e.d347118",
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "e7b41c3a.befa1"
+            ]
+        ]
+    },
+    {
+        "id": "e7b41c3a.befa1",
+        "type": "function",
+        "z": "56645818.4ba65",
+        "name": "Color&Gesture",
+        "func": "const data = msg.payload.split(',');\nconst payload = {};\npayload.r = parseFloat(data[0]);\npayload.g = parseFloat(data[1]);\npayload.b = parseFloat(data[2]);\npayload.gesture = data[3].slice(0, -2);\npayload.time = Date.now();\nmsg.payload = payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "5ca1ff43.a7e8a8",
+                "912621a1.5562e",
+                "94ef89f0.b7ee5"
+            ]
+        ]
+    },
+    {
+        "id": "96ee6afc.b9e818",
+        "type": "mqtt in",
+        "z": "56645818.4ba65",
+        "name": "",
+        "topic": "/laborwoche/steve",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "baa0a472.80fa58",
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "2ae00ca5.5d105c"
+            ]
+        ]
+    },
+    {
+        "id": "44e9907.a115a7",
+        "type": "mqtt in",
+        "z": "56645818.4ba65",
+        "name": "",
+        "topic": "/laborwoche/test",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "f4820c9e.060a28",
+        "x": 330,
+        "y": 580,
+        "wires": [
+            [
+                "5487ffc6.acbdc"
+            ]
+        ]
+    },
+    {
+        "id": "5487ffc6.acbdc",
+        "type": "debug",
+        "z": "56645818.4ba65",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "2981cf9e.8e77e8",
+        "type": "inject",
+        "z": "56645818.4ba65",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Test",
+        "payloadType": "str",
+        "x": 320,
+        "y": 660,
+        "wires": [
+            [
+                "9aae0f92.8a125"
+            ]
+        ]
+    },
+    {
+        "id": "9aae0f92.8a125",
+        "type": "mqtt out",
+        "z": "56645818.4ba65",
+        "name": "",
+        "topic": "laborwoche/marc",
+        "qos": "",
+        "retain": "",
+        "broker": "c821fdb7.f0133",
+        "x": 570,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "2ae00ca5.5d105c",
+        "type": "mqtt out",
+        "z": "56645818.4ba65",
+        "name": "",
+        "topic": "laborwoche/steve",
+        "qos": "",
+        "retain": "",
+        "broker": "c821fdb7.f0133",
+        "x": 570,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "e0c7e939.bfe578",
+        "type": "mqtt in",
+        "z": "56645818.4ba65",
+        "name": "",
+        "topic": "laborwoche/steve",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "f4820c9e.060a28",
+        "x": 330,
+        "y": 540,
+        "wires": [
+            [
+                "5487ffc6.acbdc"
+            ]
+        ]
+    }
+]
